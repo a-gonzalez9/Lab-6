@@ -20,8 +20,23 @@ def encoder(old_password): # encodes password
 
     new_password += str(new_num) # adds to password as string
 
-  encoded = int(new_password) # converts entire str to int
+  encoded = str(new_password) # converts entire str to int
   return encoded # returns int
+
+def decoder(encoded_message):
+  new_password = ""
+
+  for element in encoded_message:
+    new_num = int(element)
+    new_num -= 3
+
+    if new_num < 3:
+      new_num += 10
+
+    new_password += str(new_num)
+
+  decoded = str(new_password)
+  return decoded
 
 if __name__ == "__main__":
   condition = True
@@ -36,7 +51,7 @@ if __name__ == "__main__":
 
     elif choice == 2: # if choice is 2
       print(f'The encoded password is {encoded_password},', end="") # prints statement
-      # put rest of sentence here for decoded    
+      print(f' and the original password is {decoder(encoded_password)}')
 
     else: # if choice is Quit
       break
